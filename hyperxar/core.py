@@ -1,4 +1,3 @@
-import os
 import shutil
 from pathlib import Path
 from tqdm import tqdm
@@ -83,3 +82,15 @@ def extract_archive(src: Path, dst: Path):
                 archive.extract(path=dst)
     else:
         raise ValueError(f"Archivtyp {suffix} wird nicht unterstützt.")
+
+
+# from hyperxar import extract_archive
+
+# # ZIP extrahieren
+# extract_archive("archive.zip", "unzipped_folder")
+
+# # TAR.GZ extrahieren
+# extract_archive("archive.tar.gz", "untarred_folder")
+
+# # 7z extrahieren
+# extract_archive("archive.7z", "7z_unpacked")

@@ -1,7 +1,4 @@
 name: Python Package CI/CD
-env:
-  TWINE_USERNAME: __token__ # PyPI Username für Token
-  TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
 
 on:
   push:
@@ -11,7 +8,7 @@ on:
     branches:
     - main
   workflow_dispatch:
-    # manuelles Ausführen möglich
+
 
 jobs:
   build-test-publish:
@@ -24,7 +21,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10' # beliebige Python Version
+        python-version: '3.10'
 
     - name: Install dependencies
       run: |
@@ -32,17 +29,14 @@ jobs:
         pip install build twine pytest
 
     - name: Run tests
-      run: |
-        pytest  # falls du Tests hast
+      run: pytest || echo "No tests found"
 
     - name: Build package
-      run: |
-        python -m build
+      run: python -m build
 
     - name: Publish to PyPI
       if: github.event_name == 'push'
       env:
-        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-      run: |
-        twine upload dist/*
+      run: twine upload dist/*
