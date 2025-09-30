@@ -1,4 +1,7 @@
 name: Python Package CI/CD
+env:
+  TWINE_USERNAME: __token__ # PyPI Username für Token
+  TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
 
 on:
   push:
