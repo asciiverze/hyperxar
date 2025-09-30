@@ -3,3 +3,4 @@ dist
 hyperxar.egg-info
 .token
 .pypirc
+.env
