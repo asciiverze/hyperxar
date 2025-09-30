@@ -1,9 +1,4 @@
 
----
-
-# 7️⃣ GitHub Actions Workflow – `.github/workflows/python-publish.yml`
-
-```yaml
 name: Python Package CI/CD
 
 on:
